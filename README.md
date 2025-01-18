@@ -16,3 +16,40 @@ One way is by using [React CDN links](https://legacy.reactjs.org/docs/cdn-links.
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 ```
 Let's write the same `Hello World!` message on the web page using React.
+
+## Assignment
+
+Create a complex HTML element using React inside `root` id element. The element should include a heading, a paragraph, and an unordered list with three list items.
+
+```html
+    <div>
+        <h1 class="heading">Namaste React 🙏</h1>
+        <p>This is a paragraph inside a complex element.</p>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+    </div>
+```
+
+### Answer
+
+```javascript
+    const element = React.createElement(
+        'div',
+        null,
+        React.createElement('h1', { className: 'heading' }, 'Namaste React 🙏'),
+        React.createElement('p', null, 'This is a paragraph inside a complex element.'),
+        React.createElement(
+            'ul',
+            null,
+            React.createElement('li', null, 'Item 1'),
+            React.createElement('li', null, 'Item 2'),
+            React.createElement('li', null, 'Item 3')
+        )
+    );
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(element);
+```
