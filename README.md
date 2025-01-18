@@ -15,3 +15,4 @@ One way is by using [React CDN links](https://legacy.reactjs.org/docs/cdn-links.
 <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 ```
+Let's write the same `Hello World!` message on the web page using React.
