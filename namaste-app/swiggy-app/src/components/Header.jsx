@@ -1,11 +1,11 @@
 import React from "react";
-import { Logo } from "../data/restaurants";
+import { LOGO_URL } from "../data/static";
 
 const Header = () => (
   <header className="app-header">
     <div className="header-main">
       <div className="header-logo">
-        <img src={Logo} alt="Swiggy Logo" style={{ height: "36px" }} />
+        <img src={LOGO_URL} alt="Swiggy Logo" style={{ height: "36px" }} />
       </div>
       <button className="header-login-btn">Login</button>
     </div>

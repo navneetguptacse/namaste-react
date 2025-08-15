@@ -1,6 +1,6 @@
 import React from "react";
 
-const RestaurantSearchBar = ({ value, onChange, onSearch, onFilter }) => (
+const RestaurantSearch = ({ value, onChange, onSearch, onFilter, filter }) => (
   <div className="searchbar-container">
     <input
       type="text"
@@ -14,10 +14,10 @@ const RestaurantSearchBar = ({ value, onChange, onSearch, onFilter }) => (
         Search
       </button>
       <button onClick={onFilter} className="searchbar-btn searchbar-btn-filter">
-        Filter
+        {filter}
       </button>
     </div>
   </div>
 );
 
-export default RestaurantSearchBar;
+export default RestaurantSearch;
