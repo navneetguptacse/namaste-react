@@ -1,15 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import React, { useState } from "react";
+import { LuSearch } from "react-icons/lu";
 
 const RestaurantSearch = ({ onSearch, onFilter, isFilter, isActive }) => {
   const [input, setInput] = useState("");
-
-  useEffect(() => {
-    const handleSearchClick = () => {
-      onSearch(input);
-    };
-    handleSearchClick();
-  }, [input]);
 
   return (
     <div className="searchbar-container">
@@ -17,11 +10,14 @@ const RestaurantSearch = ({ onSearch, onFilter, isFilter, isActive }) => {
         <input
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            setInput(e.target.value);
+            onSearch(e.target.value);
+          }}
           className="searchbar-input"
           placeholder="Search..."
         />
-        <FaSearch className="searchbar-icon" />
+        <LuSearch className="searchbar-icon" />
       </div>
       <div className="searchbar-btn-group">
         <button

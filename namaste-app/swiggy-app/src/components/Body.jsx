@@ -45,12 +45,9 @@ export default function Body() {
 
   const toggleFilter = () => {
     setIsFilter((prev) => {
-      const filtered = restaurants.filter((r) =>
-        r?.info?.name?.toLowerCase().includes("")
-      );
-      const result = prev
-        ? filtered.filter((r) => r.info?.avgRating >= 4.5)
-        : filtered;
+      const result = !prev
+        ? restaurants.filter((r) => r.info?.avgRating >= 4.5)
+        : restaurants;
       setFilteredRestaurants(result);
       return !prev;
     });
