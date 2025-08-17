@@ -19,8 +19,8 @@ const Header = () => {
         <div className="right-header">
           <div className="menu-container">
             <a href="/about">About</a>
-            <a href="/about">Contact</a>
-            <a href="/about">Cart</a>
+            <a href="/contact">Contact</a>
+            <a href="/cart">Cart</a>
           </div>
           <button className="header-login-btn" onClick={changeLogin}>
             {isLogin ? "Logout" : "Login"}

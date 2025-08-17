@@ -1,3 +1,5 @@
+import React from "react";
+
 const ShimmerCard = () => (
   <div className="simmer-card">
     <div className="simmer-image-placeholder"></div>

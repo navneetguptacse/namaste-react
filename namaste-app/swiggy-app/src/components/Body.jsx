@@ -35,24 +35,6 @@ export default function Body() {
     fetchData();
   }, []);
 
-  /*
-  const applyFilters = (text, filter) => {
-    let baseList = restaurants;
-
-    if (filter) {
-      baseList = baseList.filter((r) => r.info?.avgRating >= 4.2);
-    }
-
-    if (text) {
-      baseList = baseList.filter((r) =>
-        r?.info?.name?.toLowerCase().includes(text.toLowerCase())
-      );
-    }
-
-    setFilteredRestaurants(baseList);
-  }; */
-
-  // Or,
   const applyFilters = (text, filter) => {
     const baseList = restaurants.filter(
       (r) =>
@@ -87,10 +69,7 @@ export default function Body() {
       />
 
       {isLoading ? (
-        <div
-          className="restaurant-list"
-          style={{ display: "flex", gap: "20px", marginTop: "2.5rem" }}
-        >
+        <div className="restaurant-list shimmer">
           {Array.from({ length: 12 }).map((_, index) => (
             <ShimmerCard key={index} />
           ))}
