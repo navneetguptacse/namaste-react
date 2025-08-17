@@ -119,6 +119,10 @@
   cursor: pointer;
 }
 
+.searchbar-btn:disabled {
+  cursor: default;
+}
+
 .searchbar-btn-group {
   display: flex;
   gap: 8px;

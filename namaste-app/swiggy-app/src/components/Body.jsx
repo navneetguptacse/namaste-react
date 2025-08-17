@@ -41,6 +41,7 @@ export default function Body() {
       <RestaurantSearch
         onFilter={() => setIsFilter((prev) => !prev)}
         isFilter={isFilter}
+        isActive={isLoading || restaurantsData.length === 0}
       />
 
       {isLoading ? (
@@ -55,7 +56,12 @@ export default function Body() {
       ) : restaurantsData.length === 0 ? (
         <div
           className="restaurant-list"
-          style={{ display: "flex", gap: "20px", marginTop: "2.5rem" }}
+          style={{
+            display: "flex",
+            gap: "20px",
+            marginTop: "2.5rem",
+            opacity: 0.5,
+          }}
         >
           No data found!
         </div>
