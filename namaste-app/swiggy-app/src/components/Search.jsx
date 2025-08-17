@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { LuSearch } from "react-icons/lu";
 
-const RestaurantSearch = ({ onSearch, onFilter, isFilter, isActive }) => {
-  const [input, setInput] = useState("");
-
+const RestaurantSearch = ({
+  searchText,
+  onSearch,
+  onFilter,
+  isFilter,
+  isActive,
+}) => {
   return (
     <div className="searchbar-container">
       <div className="searchbar-input-wrapper">
         <input
           type="text"
-          value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-            onSearch(e.target.value);
-          }}
+          value={searchText}
+          onChange={(e) => onSearch(e.target.value)}
           className="searchbar-input"
           placeholder="Search..."
         />

@@ -9,6 +9,7 @@ export default function Body() {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isFilter, setIsFilter] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,28 +35,51 @@ export default function Body() {
     fetchData();
   }, []);
 
+  /*
+  const applyFilters = (text, filter) => {
+    let baseList = restaurants;
+
+    if (filter) {
+      baseList = baseList.filter((r) => r.info?.avgRating >= 4.2);
+    }
+
+    if (text) {
+      baseList = baseList.filter((r) =>
+        r?.info?.name?.toLowerCase().includes(text.toLowerCase())
+      );
+    }
+
+    setFilteredRestaurants(baseList);
+  }; */
+
+  // Or,
+  const applyFilters = (text, filter) => {
+    const baseList = restaurants.filter(
+      (r) =>
+        (!filter || r.info?.avgRating >= 4.2) &&
+        (!text || r.info?.name?.toLowerCase().includes(text.toLowerCase()))
+    );
+
+    setFilteredRestaurants(baseList);
+  };
+
   const handleSearch = (input) => {
-    const list = restaurants.filter((r) =>
-      r?.info?.name?.toLowerCase().includes(input.toLowerCase())
-    );
-    setFilteredRestaurants(
-      isFilter ? list.filter((r) => r.info?.avgRating >= 4.5) : list
-    );
+    setSearchText(input);
+    applyFilters(input, isFilter);
   };
 
   const toggleFilter = () => {
     setIsFilter((prev) => {
-      const result = !prev
-        ? restaurants.filter((r) => r.info?.avgRating >= 4.5)
-        : restaurants;
-      setFilteredRestaurants(result);
-      return !prev;
+      const newFilter = !prev;
+      applyFilters(searchText, newFilter);
+      return newFilter;
     });
   };
 
   return (
     <div className="body-main">
       <RestaurantSearch
+        searchText={searchText}
         onSearch={handleSearch}
         onFilter={toggleFilter}
         isFilter={isFilter}
