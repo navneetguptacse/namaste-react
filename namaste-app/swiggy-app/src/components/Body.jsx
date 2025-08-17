@@ -6,6 +6,7 @@ import { API_URL } from "../utils/static";
 
 export default function Body() {
   const [restaurants, setRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isFilter, setIsFilter] = useState(false);
 
@@ -22,6 +23,7 @@ export default function Body() {
             ?.restaurants;
 
         setRestaurants(restaurantData || []);
+        setFilteredRestaurants(restaurantData || []);
       } catch (e) {
         console.error(e.message);
       } finally {
@@ -32,16 +34,35 @@ export default function Body() {
     fetchData();
   }, []);
 
-  const restaurantsData = isFilter
-    ? restaurants.filter((r) => r.info?.avgRating >= 4.5)
-    : restaurants;
+  const handleSearch = (input) => {
+    const list = restaurants.filter((r) =>
+      r?.info?.name?.toLowerCase().includes(input.toLowerCase())
+    );
+    setFilteredRestaurants(
+      isFilter ? list.filter((r) => r.info?.avgRating >= 4.5) : list
+    );
+  };
+
+  const toggleFilter = () => {
+    setIsFilter((prev) => {
+      const filtered = restaurants.filter((r) =>
+        r?.info?.name?.toLowerCase().includes("")
+      );
+      const result = prev
+        ? filtered.filter((r) => r.info?.avgRating >= 4.5)
+        : filtered;
+      setFilteredRestaurants(result);
+      return !prev;
+    });
+  };
 
   return (
     <div className="body-main">
       <RestaurantSearch
-        onFilter={() => setIsFilter((prev) => !prev)}
+        onSearch={handleSearch}
+        onFilter={toggleFilter}
         isFilter={isFilter}
-        isActive={isLoading || restaurantsData.length === 0}
+        isActive={isLoading || filteredRestaurants.length === 0}
       />
 
       {isLoading ? (
@@ -53,21 +74,11 @@ export default function Body() {
             <ShimmerCard key={index} />
           ))}
         </div>
-      ) : restaurantsData.length === 0 ? (
-        <div
-          className="restaurant-list"
-          style={{
-            display: "flex",
-            gap: "20px",
-            marginTop: "2.5rem",
-            opacity: 0.5,
-          }}
-        >
-          No data found!
-        </div>
+      ) : filteredRestaurants.length === 0 ? (
+        <div className="restaurant-list not-found">No data found!</div>
       ) : (
         <div className="restaurant-list">
-          {restaurantsData.map(({ info }) => (
+          {filteredRestaurants.map(({ info }) => (
             <RestaurantCard key={info?.id} {...info} />
           ))}
         </div>
