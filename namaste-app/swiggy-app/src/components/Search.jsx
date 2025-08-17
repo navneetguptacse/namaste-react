@@ -1,6 +1,6 @@
 import React from "react";
 
-const RestaurantSearch = ({ value, onChange, onSearch, onFilter, filter }) => (
+const RestaurantSearch = ({ value, onChange, onSearch, onFilter, isFilter }) => (
   <div className="searchbar-container">
     <input
       type="text"
@@ -14,7 +14,7 @@ const RestaurantSearch = ({ value, onChange, onSearch, onFilter, filter }) => (
         Search
       </button>
       <button onClick={onFilter} className="searchbar-btn searchbar-btn-filter">
-        {filter}
+        {isFilter ? "Reset" : "Filter"}
       </button>
     </div>
   </div>

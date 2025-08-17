@@ -1,11 +1,11 @@
 import React from "react";
 import "../App.css";
 import { FaStar } from "react-icons/fa";
-import { IMG_BASE_URL } from "../data/static";
+import { CDN_URL } from "../utils/static";
 
 const RestaurantCard = (info) => {
   const { name, cloudinaryImageId, avgRating, locality, cuisines, sla } = info;
-  const image = IMG_BASE_URL + cloudinaryImageId;
+  const image = CDN_URL + cloudinaryImageId;
 
   return (
     <div className="card">
