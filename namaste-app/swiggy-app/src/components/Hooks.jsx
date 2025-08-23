@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const Hooks = () => {
+  // Don't put state variable outside the components, and nor put it inside any conditional statment.
   const [value, setValue] = useState(0);
 
   // When no dep. array here -> useEffect() is called on every render
