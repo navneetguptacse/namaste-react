@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { LOGO_URL } from "../utils/static";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -12,15 +13,16 @@ const Header = () => {
     <header className="app-header">
       <div className="header-main">
         <div className="header-logo">
-          <a href="/">
+          <Link to="/">
             <img src={LOGO_URL} alt="Swiggy Logo" style={{ height: "36px" }} />
-          </a>
+          </Link>
         </div>
         <div className="right-header">
           <div className="menu-container">
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <a href="/cart">Cart</a>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/cart">Cart</Link>
           </div>
           <button className="header-login-btn" onClick={changeLogin}>
             {isLogin ? "Logout" : "Login"}
