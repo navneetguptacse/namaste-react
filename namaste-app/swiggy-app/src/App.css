@@ -50,6 +50,14 @@
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.header-login-btn span {
+  display: inline-flex;
+  align-items: center;
 }
 
 .header-login-btn:hover {
@@ -335,4 +343,35 @@
   display: flex;
   gap: 20px;
   margin-top: 2.5rem;
+}
+
+.menu-card {
+  max-width: 600px;
+  width: 100%;
+  margin: 32px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.09);
+  overflow: hidden;
+  padding: 16px;
+  margin-bottom: 580px;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.error-title {
+  font-size: 1.8rem;
+  color: #ff9800;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: #495057;
+  margin-bottom: 30px;
+  font-size: 1rem;
 }
