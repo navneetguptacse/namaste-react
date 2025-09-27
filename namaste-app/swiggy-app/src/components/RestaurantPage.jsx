@@ -1,40 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { MENU_API_URL } from "../utils/static";
+import React from "react";
 import ShimmerCard from "./ShimmerCard";
 import MenuList from "./MenuList";
 import RestaurantInfo from "./RestaurentInfo";
 import { useParams } from "react-router-dom";
+import useMenu from "../hooks/useMenu.jsx";
 
 const RestaurentPage = () => {
-  const [restaurantsInfo, setRestaurantsInfo] = useState();
-  const [restaurantsMenu, setRestaurantsMenu] = useState();
-  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
+  const { restaurantsInfo, restaurantsMenu, isLoading, error } = useMenu(id);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(MENU_API_URL + id);
-        if (!response.ok)
-          throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-
-        const restaurantsInfoData = data.data.cards[2].card.card.info;
-        const restaurantsMenuData =
-          data.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[1].card.card
-            .itemCards;
-
-        setRestaurantsInfo(restaurantsInfoData || []);
-        setRestaurantsMenu(restaurantsMenuData || []);
-      } catch (e) {
-        console.error(e.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [id]);
+  if (error) {
+    return (
+      <div className="body-main">
+        <div className="error-message">
+          <h2>Oops! Something went wrong</h2>
+          <p>Error: {error}</p>
+          <button onClick={() => window.location.reload()}>Try Again</button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="body-main">
