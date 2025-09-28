@@ -1,5 +1,4 @@
 import React from "react";
-import "../App.css";
 import { FaStar } from "react-icons/fa";
 import { CDN_URL } from "../utils/static";
 import { Link } from "react-router-dom";
@@ -9,30 +8,42 @@ const RestaurantCard = (info) => {
   const image = CDN_URL + cloudinaryImageId;
 
   return (
-    <div className="card">
-      <Link
-        key={info?.id}
-        to={`/restaurant/${info?.id}`}
-        style={{
-          textDecoration: "none",
-          color: "inherit",
-          cursor: "pointer",
-        }}
-      >
-        <img src={image} alt={name} className="card-image" />
-        <div className="card-content">
-          <h3 className="card-title">{name}</h3>
-          <div className="card-rating-time">
-            <FaStar color="#43b02a" size={16} />
-            <span>{avgRating}</span>
-            <span className="dot">·</span>
-            <span>{sla?.slaString}</span>
+    <Link
+      to={`/restaurant/${info?.id}`}
+      className="group block bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden transform hover:-translate-y-1"
+    >
+      <div className="relative">
+        <img
+          src={image}
+          alt={name}
+          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
+
+      <div className="p-4">
+        <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-1">
+          {name}
+        </h3>
+
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-1 bg-green-600 text-white px-2 py-1 rounded text-sm">
+            <FaStar size={12} />
+            <span className="font-medium">{avgRating}</span>
           </div>
-          <div className="card-cuisines">{cuisines.join(", ")}</div>
-          <div className="card-location">{locality}</div>
+          <span className="text-gray-600">•</span>
+          <span className="text-gray-600 text-sm font-medium">
+            {sla?.slaString}
+          </span>
         </div>
-      </Link>
-    </div>
+
+        <div className="text-gray-500 text-sm mb-1 line-clamp-1">
+          {cuisines.join(", ")}
+        </div>
+
+        <div className="text-gray-400 text-sm line-clamp-1">{locality}</div>
+      </div>
+    </Link>
   );
 };
 

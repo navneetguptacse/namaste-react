@@ -13,32 +13,79 @@ const Header = () => {
   };
 
   return (
-    <header className="app-header">
-      <div className="header-main">
-        <div className="header-logo">
-          <Link to="/">
-            <img src={LOGO_URL} alt="Swiggy Logo" style={{ height: "36px" }} />
-          </Link>
-        </div>
-        <div className="right-header">
-          <div className="menu-container">
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/cart">Cart</Link>
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center">
+              <img src={LOGO_URL} alt="Swiggy Logo" className="h-9 w-auto" />
+            </Link>
           </div>
-          <button className="header-login-btn" onClick={changeLogin}>
-            {isLogin ? "Logout" : "Login"}
-          </button>
-          {isLogin && (
-            <FaUser
-              style={{
-                marginTop: "6px",
-                fontSize: "1.25rem",
-                color: `${status ? "#f19100ff" : "gray"}`,
-              }}
-            />
-          )}
+
+          <div className="hidden md:flex items-center gap-8">
+            <nav className="flex items-center gap-6">
+              <Link
+                to="/"
+                className="text-gray-700 hover:text-orange-500 font-medium transition-colors duration-200"
+              >
+                Home
+              </Link>
+              <Link
+                to="/about"
+                className="text-gray-700 hover:text-orange-500 font-medium transition-colors duration-200"
+              >
+                About
+              </Link>
+              <Link
+                to="/contact"
+                className="text-gray-700 hover:text-orange-500 font-medium transition-colors duration-200"
+              >
+                Contact
+              </Link>
+              <Link
+                to="/cart"
+                className="text-gray-700 hover:text-orange-500 font-medium transition-colors duration-200"
+              >
+                Cart
+              </Link>
+            </nav>
+
+            <div className="flex items-center gap-3">
+              <button
+                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md font-semibold transition-colors duration-200 flex items-center gap-2"
+                onClick={changeLogin}
+              >
+                {isLogin ? "Logout" : "Login"}
+              </button>
+
+              {isLogin && (
+                <FaUser
+                  className={`text-xl ${
+                    status ? "text-orange-500" : "text-gray-400"
+                  }`}
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button className="text-gray-700 hover:text-orange-500">
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </header>
