@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { LOGO_URL } from "../utils/static";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa6";
+import useStatus from "../hooks/useStatus";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
+  const { status } = useStatus();
 
   const changeLogin = () => {
     setIsLogin((isLogin) => !isLogin);
@@ -27,6 +30,15 @@ const Header = () => {
           <button className="header-login-btn" onClick={changeLogin}>
             {isLogin ? "Logout" : "Login"}
           </button>
+          {isLogin && (
+            <FaUser
+              style={{
+                marginTop: "6px",
+                fontSize: "1.25rem",
+                color: `${status ? "#f19100ff" : "gray"}`,
+              }}
+            />
+          )}
         </div>
       </div>
     </header>
